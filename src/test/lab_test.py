@@ -3,9 +3,9 @@ import sqlite3
 import csv
 import unittest
 
+
+
 from src.main.main import load_and_clean_users, return_cursor, load_and_clean_call_logs, write_ordered_calls, write_user_analytics
-
-
 class ProjectTests(unittest.TestCase):
 
     def setUp(self):
@@ -150,7 +150,7 @@ class ProjectTests(unittest.TestCase):
         #load_and_clean_call_logs("testCallLogs.csv")
         write_ordered_calls(test_ordered_calls_path)
         # List that will hold the contents of orderedCalls.csv
-        ordered_calls = []
+        ordered_calls =[]
         #Get the data from orderedCalls.csv
         with open(test_ordered_calls_path, 'r') as file:
             # Skip the first line
@@ -160,11 +160,11 @@ class ProjectTests(unittest.TestCase):
                 ordered_calls.append(line.strip().split(','))
 
         # Assert that the userId in the first record in ordered_calls is 1
-        self.assertEqual(1, int(ordered_calls[0][5]))
+        self.assertEqual(1, int(ordered_calls[0][0]))
         # Assert that the userId in the fifth record is 2
-        self.assertEqual(2, int(ordered_calls[4][5]))
+        self.assertEqual(2, int(ordered_calls[4][0]))
         # Assert that the userId in the last record is 4
-        self.assertEqual(4, int(ordered_calls[-1][5]))
+        self.assertEqual(4, int(ordered_calls[-1][0]))
 
         # Assert that startTime in the first record is < the startTime in the second record
         self.assertTrue(int(ordered_calls[0][2]) < int(ordered_calls[1][2]))
